@@ -1,0 +1,7 @@
+Important:
+
+-->To run double click "Encome.exe"
+
+-->The File "EncomeQ.exe" should always be in the same folder where the main application "Encome.exe" is to be run or is compiled because due to security reason as it is a Password Manager .
+
+-> CD KEY = EXaP-ASBJ
