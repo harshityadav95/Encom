@@ -1,4 +1,5 @@
 #include<iostream.h>
+#include<stdfxio.h>
 #include<ctype.h>
 #include<conio.h>
 #include<string.h>
@@ -11,6 +12,7 @@
 const char a=176;
 const char b=219;
 const char ll=179;
+using namspace.h
 void tp_lgo()
 {
 	clrscr();
@@ -54,24 +56,22 @@ int length_calc(char stringlen[100])
 }
 int oddmeter(int key_var_digit2)
 {
-	int coin=0;
-	if(key_var_digit2%2==0)
-	{
-		coin=0;
-	}
-	else if(key_var_digit2%2==1)
-	{
-		coin=1;
-	}
-	return(coin);
+		if(key_var_digit2%2==0)
+		{
+			return(0);
+		}
+		else if(key_var_digit2%2==1)
+		{
+			return(1);
+		}
 }
 int licence_key(char key[])
 {
-	int gex=2;
 	int validation=0;
 	if(key[9]!='\0')
 	{
-		gex=1;
+		return(1);
+		
 	}
 	else if(key[9]=='\0')
 	{
@@ -110,15 +110,152 @@ int licence_key(char key[])
 		}
 		if(validation==4)
 		{
-			gex=0;
+			return(0);
 		}
 		else
 		{
-			gex=1;
+			return(1);
 		}
 	}
-	return(gex);
 }
+class login_profile
+{
+	private:
+	char profile_user_fname[20];
+	char profile_user_lname[20];
+	char profile_user_appname[20];
+	char login_password[36];
+
+	public:
+	void getfname()
+	{
+		gets(profile_user_fname);
+	}
+	void getlname()
+	{
+		gets(profile_user_lname);
+	}
+	void getappname()
+	{
+		gets(profile_user_appname);
+	}
+	void getapppass()
+	{
+		while(1)
+		{
+			cin>>login_password;
+			char login_password_confirm[36];
+			cout<<" Confirm Your Password              : ";
+			cin>>login_password_confirm;
+			while(1)
+			{
+				if(strcmp(login_password,login_password_confirm)==0)
+				{
+					break;
+				}
+				else
+				{
+					cout<<"\n ERROR : Password Does not Match \n";
+					cout<<" Confirm Your Password              : ";
+					cin>>login_password_confirm;
+					cout<<"\n\n ! Remember your password well in case you lose it all the files associated with it will be Destroyed \n";
+				}
+			}
+			break;
+		}
+	}	
+	void getdata()
+	{
+		cout<<"\n Enter Your First Name              : ";
+		gets(profile_user_fname);
+		cout<<" Enter Your last Name               : ";
+		gets(profile_user_lname);
+		cout<<" Enter Your Profile Name            : ";
+		gets(profile_user_appname);
+		cout<<" Enter You Password                 : ";
+		getapppass();
+	}
+	void putdata()
+	{
+		cout<<"\n Your First Name              : ";
+		cout<<profile_user_fname;
+		cout<<"\n Your last Name               : ";
+		cout<<profile_user_lname;
+		cout<<"\n Your Profile Name            : ";
+		cout<<profile_user_appname;
+		cout<<"\n You Password                 : ";
+		cout<<login_password;
+	}	
+	char* return_profile_user_fname()
+	{
+		return(profile_user_fname);
+	}
+	char* return_profile_user_lname()
+	{
+		return(profile_user_lname);
+	}
+	char* return_profile_user_appname()
+	{
+		return(profile_user_appname);
+	}
+	char* return_login_password()
+	{
+		return(login_password);
+	}
+	void modify()
+	{
+		char mprofile_user_fname[20];
+		char mprofile_user_lname[20];
+		char mprofile_user_appname[20];
+		char mlogin_password[36];		
+		std_err3();
+		cout<<"\n Enter Your First Name              : ";
+		gets(mprofile_user_fname);
+		std_err3();
+		cout<<" Enter Your last Name               : ";
+		gets(mprofile_user_lname);
+		std_err3();
+		cout<<" Enter Your Profile Name            : ";
+		gets(mprofile_user_appname);
+		std_err3();
+		cout<<" Enter You Password                 : ";
+		cin>>mlogin_password;
+		if(strcmp(mprofile_user_fname,"~")!=0)
+		{
+			strcpy(profile_user_fname,mprofile_user_fname);
+		}
+		if(strcmp(mprofile_user_lname,"~")!=0)
+		{
+			strcpy(profile_user_lname,mprofile_user_lname);
+		}
+		if(strcmp(mprofile_user_appname,"~")!=0)
+		{
+			strcpy(profile_user_appname,mprofile_user_appname);
+		}
+		if(strcmp(mlogin_password,"~")!=0)
+		{
+			char mlogin_password_confirm[36];
+			cout<<" Confirm Your Password              : ";
+			cin>>mlogin_password_confirm;
+			while(1)
+			{
+				if(strcmp(mlogin_password,mlogin_password_confirm)==0)
+				{
+					break;
+				}
+				else
+				{
+					cout<<"\n ERROR : Password Does not Match \n";
+					cout<<" Confirm Your Password              : ";
+					cin>>mlogin_password_confirm;
+					cout<<"\n\n ! Remember your password well in case you lose it all the files associated with it will be Destroyed \n";
+				}
+			}
+			strcpy(login_password,mlogin_password);
+		}
+		
+	}
+};
 class server_security
 {
 	private:
@@ -127,7 +264,6 @@ class server_security
 	char security_ans[20];
 
 	public:
-
 	void getdata()
 	{
 		cout<<"\n Enter the Password : ";
@@ -182,7 +318,7 @@ class server_login : public server_security
 	char domain[10];
 
 	public:
-
+	
 	void getdata()
 	{
 		cout<<"\n Enter the Transfer Protocol : ";
@@ -350,20 +486,6 @@ void mrgn_sqncr(int spc,int activate_line)
 	}
 
 }
-int finder(char hexspace[50])
-{
-	int hext=length_calc(hexspace);
-	int hexc=1;
-	for(int hexb=0;hexb<hext;++hexb)
-	{
-		if(hexspace[hexb]==' ')
-		{
-			hexc=0;
-			break;
-		}
-	}
-	return(hexc);
-}	
 void hedr_tle1()
 {
 	cout<<"\t\t\t    Your Smart Password Manager \n";
@@ -393,11 +515,11 @@ int dsp_gui1()
 	mrgn_sqncr(6,0);
 	cout<<"  1. User Profile\n ";
 	mrgn_sqncr(6,0);
-	cout<<"  2. Save Credential\n";
+	cout<<"  2. Enter Data\n";
 	mrgn_sqncr(6,0);
-	cout<<"  3. Manage Credential\n";
+	cout<<"  3. Saved Data\n";
 	mrgn_sqncr(6,0);
-	cout<<"  4. FUN ZONE \n ";
+	cout<<"  4. Time Pass\n ";
 	mrgn_sqncr(6,0);
 	cout<<"  5. Control Panel\n ";
 	mrgn_sqncr(6,0);
@@ -439,71 +561,36 @@ void profile_creator()
 	ln_drw(1);
 	char case_49_loop;
 	int case_49_loop_var1=0;
-	char app_name[30];
-	char hexalgo[30];
-	cout<<" Remember Any Field should not contain ' ' SPACE \n";
+	login_profile gamma;
+	cout<<"\n Enter Your First Name              : ";
+	gamma.getfname();
+	cout<<" Enter Your last Name               : ";
+	gamma.getlname();
 	cout<<" Enter Your Profile Name            : ";
-	gets(app_name);
-	while(1)
-	{
-		int oss=1;
-		oss=finder(app_name);
-		if(oss==0)
-		{
-			cout<<"\n ERROR \n";
-			cout<<" Remember Any Field should not contain ' ' SPACE \n";
-			cout<<" Enter Your Profile Name            : ";
-			gets(app_name);
-		}
-		if(oss==1)
-		{
-			break;
-		}	
-	}		
+	gamma.getappname();
 	cout<<" Enter You Password                 : ";
-	gets(hexalgo);
-	while(1)
-	{
-		int oss=1;
-		oss=finder(hexalgo);
-		if(oss==0)
-		{
-			cout<<"\n ERROR \n";
-			cout<<" Remember Any Field should not contain ' ' SPACE \n" ;
-			cout<<" Enter You Password                 : ";
-			gets(hexalgo);
-		}
-		if(oss==1)
-		{
-			break;
-		}	
-	}
+	gamma.getapppass();
 	cout<<"\n \n Select From Below : ";
-	cout<<"\n 6. Exit ";
 	cout<<"\n 7. Submit ";
 	cout<<"\n 8. Retry \n-->  ";
 	cin>>case_49_loop;
-	case_49_loop_var1=logix(54,case_49_loop,56);
+	case_49_loop_var1=logix(55,case_49_loop,56);
 	while(case_49_loop_var1)
 	{
 		std_err2();
 		cin>>case_49_loop;
-		case_49_loop_var1=logix(54,case_49_loop,56);
+		case_49_loop_var1=logix(55,case_49_loop,56);
 	}
 	switch(case_49_loop)
 	{
-		case 54:
-		{
-			exit(1);
-		}	
 		case 55:
 		{
-			ofstream hex1("ADMIN.exe",ios::out);
-			hex1<<app_name<<' '<<hexalgo<<' ';
-			hex1.close();
-			cout<<"\n Changes Saved Sucessfully Press any key to Exit and Apply Changes...";
-			getch();
-			exit(1);
+			ofstream pif;
+			pif.open("EncomLog.exe",ios::out);
+			pif.write((char*)&gamma,sizeof(login_profile));
+			pif.close();
+			cout<<"\n Message : File Sucessfully Written ";
+			break;
 		}
 		case 56:
 		{
@@ -511,123 +598,27 @@ void profile_creator()
 		}
 	}
 }
-void bootstrap()
-{
-	clrscr();
-	ln_drw(1);
-	mrgn_sqncr(4,2);
-	cout<<"Login Manager \n";
-	ln_drw(1);
-	cout<<"\n\n";
-	cout<<"Select an option from below : \n";
-	cout<<" 7. To Exit Application \n";
-	cout<<" 8. Reset Your Profile : ";
-	cout<<"\n --> ";
-	int boot;
-	cin>>boot;
-	while(1)
-	{
-		if(boot==7)
-		{
-			clrscr();
-			gotoxy(26,14);
-			cout<<" :> Event Sucessfully Completed <: ";
-			gotoxy(26,16);
-			cout<<" :> Shutting Down Application <: ";
-			delay(1000);
-			exit(1);
-		}
-		if(boot==8)
-		{
-			clrscr();
-			cout<<"\n Enter APPLICATION KEY TO RESET YOUR PASSWORD ";
-			char passkey[9];
-			cout<<"\n (ie XXXX-XXXX )\n KEY == ";
-			cin>>passkey;
-			int bot=licence_key(passkey);
-			if(bot==0)
-			{
-				profile_creator();
-			}
-			else
-			{
-				clrscr();
-				gotoxy(26,14);
-				cout<<" :>    Invalid Key Entered      <: ";
-				gotoxy(26,16);
-				cout<<" :> Shutting Down Application <: ";
-				delay(1000);
-				exit(1);
-			}	
-			
-		}	
-
-	}
-
-
-} 
 void tron();
-void password()
+void password(char lock[])
 {
+	char password[40];
 	int value;
-	char arr[20],ch;
-	int j;
-	for(int i=0;;i++)
+	gotoxy(26,12);
+	cout<<"Enter your password : ";
+	cin>>password;
+	value=strcmp(lock,password);
+	clrscr();
+	if(value!=0)
 	{
-		gotoxy(26,14);
-		cout<<"Enter your password : ";
-		j=0;
-		while((ch=getch())!=13)
-		{
-			cout<<"*";
-			arr[j]=ch;
-			j++;
-		}
-		arr[j]='\0';
-		if(strcmp(arr,"ENCOM")==0)
-		{
-			bootstrap();
-		}
-		else
-		{
-			ifstream file_in("ADMIN.exe",ios::in);
-			char arr1[50];
-			char arr2[50];
-			int scan=0;
-			while(!file_in.eof())
-			{
-				if(scan==0)
-				{
-					file_in>>arr1;
-
-				}
-				if(scan==1)
-				{
-					file_in>>arr2;
-
-					break;
-				}
-				scan++;
-			}
-			file_in.close();
-			if(strcmp(arr2,arr)==0)
-			{
-				break;
-			}
-			else
-			{
-				gotoxy(33,12);
-				cout<<"INVALID PASSWORD ";
-				delay(700);
-				gotoxy(26,14);
-				cout<<" :> Restarting Application <: ";
-				delay(1000);
-				tron();
-
-			}
-		}
+	gotoxy(33,12);
+	cout<<"INVALID PASSWORD ";
+	delay(700);
+	gotoxy(26,14);
+	cout<<" :> Restarting Application <: ";
+	delay(1000);
+	tron();
 	}
-	
+
 }
 void tron()
 {
@@ -660,7 +651,7 @@ void tron()
 	delay(500);
 	cout<<"  Request :	User File  				   [";
 	ifstream file_check2;
-	file_check2.open("ADMIN.exe",ios::in,ios::nocreate);
+	file_check2.open("EncomLog.exe",ios::binary|ios::in);
 	if(!file_check2)
 	{
 		cout<<" NOT FOUND ";
@@ -703,10 +694,15 @@ void tron()
 	}
 	if(tron_2==3)
 	{
+		ifstream file_check2;
+		file_check2.open("EncomLog.exe",ios::binary|ios::in);
+		login_profile logalpha;
+		file_check2.read((char*)&logalpha,sizeof(login_profile));
 		clrscr();
-		gotoxy(9,10);
-		cout<<"! If you have forgot your Password or want to exit Type ENCOM ";
-		password();
+		gotoxy(26,10);
+		cout<<"User Profile Name   : "<<logalpha.return_profile_user_appname();
+		password(logalpha.return_login_password());
+		file_check2.close();
 	}
 	if(tron_2==2)
 	{
@@ -802,35 +798,14 @@ void main()
 				mrgn_sqncr(4,2);
 				cout<<"USER PROFILE \n";
 				ln_drw(1);
-				ifstream file_in("ADMIN.exe",ios::in);
-				char hexer[80];
-				char arr1[50];
-				char arr2[50];
-				int scan=0;
-				if(!file_in)
-				{
-					cout<<"\n ERROR : ADMIN.exe NOT FOUND  ";
-					getch();
-					exit(1);
-				}
-				while(!file_in.eof())
-				{
-					if(scan==0)
-					{	
-						file_in>>arr1;
-						cout<<"\n Your Profile Name is      : "<<arr1<<"\n";
-					}
-					if(scan==1)
-					{	
-						file_in>>arr2;
-						cout<<"\n Your Password  is         : "<<arr2<<"\n";
-						break;
-					}
-					scan++;					
-				}
-				file_in.close();
+				fstream file_check2;
+				file_check2.open("EncomLog.exe",ios::nocreate|ios::binary|ios::in|ios::out);
+				login_profile logalpha;
+				long upos=0;
+				file_check2.read((char*)&logalpha,sizeof(login_profile));
+				logalpha.putdata();
 				cout<<"\n \n Select From Below : ";
-				cout<<"\n 7. Reset ";
+				cout<<"\n 7. Edit ";
 				cout<<"\n 8. Main Menu \n--> ";
 				char ul;
 				cin>>ul;
@@ -846,7 +821,15 @@ void main()
 					case 55:
 					{
 						clrscr();
-						profile_creator();
+						ln_drw(1);
+						mrgn_sqncr(4,2);
+						cout<<"EDIT OPTION \n";
+						ln_drw(1);
+						logalpha.modify();
+						cout<<"\n File Modified ";
+						file_check2.seekg(upos);
+						file_check2.write((char*)&logalpha,sizeof(login_profile));
+						cout<<"\n File Written ";
 						break;
 
 					}
@@ -855,6 +838,7 @@ void main()
 						break;
 					}
 				}
+				file_check2.close();
 				break;
 			}
 			case 50:
@@ -1123,7 +1107,7 @@ void main()
 						}
 						case 7:
 						{
-							remove("ADMIN.exe");
+							remove("EncomLog.exe");
 							gotoxy(26,14);
 							cout<<" :> Event Sucessfully Completed <: ";
 							gotoxy(26,16);
